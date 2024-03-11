@@ -66,7 +66,6 @@
         audio.loop = true;
         audio.volume = 0.1;
         document.body.appendChild(audio);
-        audio.play();
 
         document.addEventListener('visibilitychange', function () {
             if (document.hidden) {
