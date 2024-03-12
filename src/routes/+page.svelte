@@ -4,13 +4,21 @@
     import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
     import { onMount } from 'svelte';
 
+    let bpm = 20;
+
     onMount(() => {
-        const scene = new THREE.Scene();
-        const camera = new THREE.PerspectiveCamera(70, window.innerWidth / window.innerHeight, 0.1, 1000);
+        // three
+        const container = document.getElementById('canvasFrame');
 
         const renderer = new THREE.WebGLRenderer();
         renderer.setSize(window.innerWidth, window.innerHeight);
-        document.body.appendChild(renderer.domElement);
+        container.appendChild(renderer.domElement);
+
+        const scene = new THREE.Scene();
+        const camera = new THREE.PerspectiveCamera(70, window.innerWidth / window.innerHeight, 0.1, 1000);
+        scene.background = 0xffffff;
+        camera.position.z = -0.8;
+        camera.position.x = 0.45;
 
         const loader = new GLTFLoader();
 
@@ -24,61 +32,49 @@
                 console.error(error);
             },
         );
-        window.addEventListener('resize', onWindowResize, false);
-
-        function onWindowResize() {
-            camera.aspect = window.innerWidth / window.innerHeight;
-            camera.updateProjectionMatrix();
-            renderer.setSize(window.innerWidth, window.innerHeight);
-        }
-
-        camera.position.z = -0.8;
-        camera.position.x = 0.45;
-
-        scene.background = 0xffffff;
 
         const controls = new OrbitControls(camera, renderer.domElement);
 
         controls.autoRotate = true;
-        controls.autoRotateSpeed = 10;
+        controls.autoRotateSpeed = (bpm / 33) * 10;
         controls.enableDamping = true;
         controls.enablePan = false;
-        controls.enableZoom = false;
+        controls.enableZoom = true;
         controls.enableRotate = false;
 
-        const light = new THREE.HemisphereLight(0xffffff, 0xffffff, 0.2);
+        const light = new THREE.HemisphereLight(0xffffff, 0xffffff, 1);
         scene.add(light);
 
         function animate() {
             requestAnimationFrame(animate);
-            camera.rotateY(0.1);
-            camera.rotateZ(0.2);
-//blahaj spins at ~5 bpm
             controls.update();
             renderer.render(scene, camera);
         }
         animate();
 
-        document.body.style.filter = 'blur(5px)';
-
         const audio = document.createElement('audio');
         audio.src = 'discordholdmusic.mp3';
-        audio.id = 'discordAudio';
         audio.loop = true;
         audio.volume = 0.1;
         document.body.appendChild(audio);
 
-        document.addEventListener('visibilitychange', function () {
+        // watching stuff
+        document.addEventListener('click', () => {
+            audio.play();
+        });
+        document.addEventListener('visibilitychange', () => {
             if (document.hidden) {
-                document.getElementById('discordAudio').pause();
+                audio.pause();
             } else {
-                document.getElementById('discordAudio').play();
+                audio.play();
             }
         });
-        document.body.addEventListener('click', function () {
-            document.body.style.filter = 'blur(0px)';
-            light.intensity = 1;
-            document.getElementById('discordAudio').play();
+        window.addEventListener('resize', () => {
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(window.innerWidth, window.innerHeight);
         });
     });
 </script>
+
+<div id="canvasFrame" class="-z-40"></div>
