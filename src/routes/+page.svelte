@@ -53,6 +53,7 @@
             requestAnimationFrame(animate);
             camera.rotateY(0.1);
             camera.rotateZ(0.2);
+//blahaj spins at ~5 bpm
             controls.update();
             renderer.render(scene, camera);
         }
