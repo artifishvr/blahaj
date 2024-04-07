@@ -62,6 +62,7 @@
         // watching stuff
         document.addEventListener('click', () => {
             audio.play();
+            plausible('PlayMusic');
         });
         document.addEventListener('visibilitychange', () => {
             if (document.hidden) {
@@ -79,8 +80,12 @@
         const analyticsScript = document.createElement('script');
         analyticsScript.defer = true;
         analyticsScript.dataset.domain = 'blahaj.arti.gay';
-        analyticsScript.src = 'https://a.arti.lol/js/script.js';
+        analyticsScript.src = 'https://a.arti.lol/js/script.tagged-events.js';
         document.head.appendChild(analyticsScript);
+        const plausibleExtra = document.createElement('script');
+        plausibleExtra.innerHTML =
+            'window.plausible = window.plausible || function() { (window.plausible.q = window.plausible.q || []).push(arguments) }';
+        document.head.appendChild(plausibleExtra);
     });
 </script>
 
