@@ -75,6 +75,12 @@
             camera.updateProjectionMatrix();
             renderer.setSize(window.innerWidth, window.innerHeight);
         });
+
+        const analyticsScript = document.createElement('script');
+        analyticsScript.defer = true;
+        analyticsScript.dataset.domain = 'blahaj.arti.gay';
+        analyticsScript.src = 'https://a.arti.lol/js/script.js';
+        document.head.appendChild(analyticsScript);
     });
 </script>
 
