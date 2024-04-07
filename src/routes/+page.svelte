@@ -87,6 +87,10 @@
     }
 </script>
 
+<svelte:head>
+    <title>blahaj go spinny</title>
+</svelte:head>
+
 <div class="fixed bottom-0 right-0 m-4">
     <button
         on:click={playMusic}
