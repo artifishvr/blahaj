@@ -94,9 +94,9 @@
 <div
     tabindex="-1"
     aria-hidden="true"
-    class="hidden m-12 overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
+    class="hidden flex pointer-events-none fixed w-full h-full top-0 left-0 items-center justify-center">
     <div
-        class="relative p-8 w-full max-w-3xl max-h-full bg-gray-400 rounded-md bg-clip-padding backdrop-filter backdrop-blur-md bg-opacity-10 border border-gray-100 text-white">
+        class="relative p-8 w-full max-w-3xl max-h-full bg-gray-400 rounded-md bg-clip-padding backdrop-filter backdrop-blur-md bg-opacity-10 border border-gray-600/50 text-white">
         <h1>blahaj go spinny</h1>
     </div>
 </div>
