@@ -108,6 +108,20 @@
         >{pausemusic ? "Play" : "Pause"} Music</button>
 </div>
 
+<div class="fixed bottom-0 left-0 m-4 text-gray-400">
+    <p>
+        Built by <a
+            href="https://arti.gay"
+            target="_blank"
+            class="text-blue-300">ArtificialVR</a>
+        🏳️‍⚧️<br />Inspired by
+        <a
+            href="https://www.magishira.dev/blahaj"
+            target="_blank"
+            class="text-blue-300">Shira</a>
+    </p>
+</div>
+
 <div id="canvasFrame" class="-z-40"></div>
 
 <audio src="discordholdmusic.mp3" loop bind:paused={pausemusic} bind:volume
