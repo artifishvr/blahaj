@@ -66,7 +66,7 @@
 
         const analyticsScript = document.createElement("script");
         analyticsScript.defer = true;
-        analyticsScript.dataset.domain = "blahaj.arti.gay";
+        analyticsScript.dataset.domain = "blahaj.ca";
         analyticsScript.src = "https://a.arti.lol/js/script.tagged-events.js";
         document.head.appendChild(analyticsScript);
         const plausibleExtra = document.createElement("script");
