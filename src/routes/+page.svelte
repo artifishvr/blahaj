@@ -91,7 +91,7 @@
     <title>blahaj go spinny</title>
 </svelte:head>
 
-<div
+<!-- <div
     tabindex="-1"
     aria-hidden="true"
     class="hidden flex pointer-events-none fixed w-full h-full top-0 left-0 items-center justify-center">
@@ -99,7 +99,7 @@
         class="relative p-8 w-full max-w-3xl max-h-full bg-gray-400 rounded-md bg-clip-padding backdrop-filter backdrop-blur-md bg-opacity-10 border border-gray-600/50 text-white">
         <h1>blahaj go spinny</h1>
     </div>
-</div>
+</div> -->
 
 <div class="fixed bottom-0 right-0 m-4">
     <button
