@@ -4,6 +4,7 @@
     import { GLTFLoader } from "three/addons/loaders/GLTFLoader.js";
     import { OrbitControls } from "three/addons/controls/OrbitControls.js";
     import { onMount } from "svelte";
+    import "@fontsource-variable/nunito";
 
     let bpm = 20;
     let loading = true;
@@ -151,7 +152,7 @@
             href="https://arti.gay"
             target="_blank"
             class="text-blue-300">ArtificialVR</a>
-        🏳️‍⚧️<br />Inspired by
+        <br />Inspired by
         <a
             href="https://www.magishira.dev/blahaj"
             target="_blank"
@@ -163,3 +164,9 @@
 
 <audio src="discordholdmusic.mp3" loop bind:paused={pausemusic} bind:volume
 ></audio>
+
+<style>
+    :global(body) {
+        font-family: "Nunito Variable", sans-serif;
+    }
+</style>
