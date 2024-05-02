@@ -120,29 +120,35 @@
 
 <div class="fixed bottom-0 right-0 m-4">
     <button
-        on:click={playMusic}
-        class="  bg-gray-400 bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-20 rounded-md py-2 px-4 text-white"
-        >{pausemusic ? "Play" : "Pause"} Music</button>
+        on:click="{playMusic}"
+        class="rounded-md bg-gray-400 bg-opacity-20 bg-clip-padding px-4 py-2 text-white backdrop-blur-sm backdrop-filter">
+        {pausemusic ? "Play" : "Pause"} Music
+    </button>
 </div>
 
 <div class="fixed bottom-0 left-0 m-4 text-gray-400">
     <p>
-        Built by <a
-            href="https://arti.gay"
-            target="_blank"
-            class="text-blue-300">ArtificialVR</a>
+        Built by
+        <a href="https://arti.gay" target="_blank" class="text-blue-300"
+            >ArtificialVR</a
+        >
         <br />Inspired by
         <a
             href="https://www.magishira.dev/blahaj"
             target="_blank"
-            class="text-blue-300">Shira</a>
+            class="text-blue-300"
+            >Shira</a
+        >
     </p>
 </div>
 
 <div id="canvasFrame" class="-z-40"></div>
 
-<audio src="discordholdmusic.mp3" loop bind:paused={pausemusic} bind:volume
-></audio>
+<audio
+    src="discordholdmusic.mp3"
+    loop
+    bind:paused="{pausemusic}"
+    bind:volume></audio>
 
 <style>
     :global(body) {

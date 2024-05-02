@@ -4,15 +4,12 @@
 </script>
 
 <div
-    class="flex pointer-events-none fixed w-full h-full top-0 left-0 items-center justify-center transition duration-500 ease-out {show
-        ? ''
-        : 'opacity-0 pointer-events-none'}">
+    class="{show ? '' : 'opacity-0 pointer-events-none'} pointer-events-none fixed left-0 top-0 flex h-full w-full items-center justify-center transition duration-500 ease-out">
     <div
-        class="m-12 flex flex-col items-center justify-center relative p-8 max-w-3xl max-h-full bg-gray-400 rounded-md bg-clip-padding backdrop-filter backdrop-blur-md bg-opacity-10 border border-gray-600/50 text-white">
+        class="relative m-12 flex max-h-full max-w-3xl flex-col items-center justify-center rounded-md border border-gray-600/50 bg-gray-400 bg-opacity-10 bg-clip-padding p-8 text-white backdrop-blur-md backdrop-filter">
         <div
-            class="border-t-blue-500 animate-spin ease-linear rounded-full border-4 border-t-4 border-gray-200 h-12 w-12 mb-4">
-        </div>
-        <h1 class="text-xl font-medium text-center">Info</h1>
-        <p class="font-medium text-center">TODO</p>
+            class="mb-4 h-12 w-12 animate-spin rounded-full border-4 border-t-4 border-gray-200 border-t-blue-500 ease-linear"></div>
+        <h1 class="text-center text-xl font-medium">Info</h1>
+        <p class="text-center font-medium">TODO</p>
     </div>
 </div>
