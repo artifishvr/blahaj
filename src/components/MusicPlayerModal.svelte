@@ -17,6 +17,8 @@
 
     async function loadMusic() {
         const track = document.getElementById('track');
+        if (!track.src) return;
+
         bpmDetermined = false;
         trackloaded = true;
         const audioContext = new AudioContext();
