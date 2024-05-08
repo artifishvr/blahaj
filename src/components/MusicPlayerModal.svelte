@@ -16,6 +16,15 @@
     }
 
     async function loadMusic() {
+        console.log('loading music');
+        const response = await fetch('/musicplayer', {
+            method: 'POST',
+            body: JSON.stringify({
+                url: 'https://youtu.be/Ljjut210k90',
+            }),
+        });
+        console.log(response);
+
         const track = document.getElementById('track');
         if (!track.src) return;
 

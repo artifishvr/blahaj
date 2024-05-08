@@ -24,7 +24,9 @@
     "type": "module",
     "dependencies": {
         "@fontsource-variable/nunito": "^5.0.19",
+        "minio": "^8.0.0",
         "realtime-bpm-analyzer": "^4.0.2",
-        "three": "^0.162.0"
+        "three": "^0.162.0",
+        "uuid": "^9.0.1"
     }
 }
