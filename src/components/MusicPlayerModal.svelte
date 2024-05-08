@@ -4,7 +4,10 @@
 
     export let show;
 
+    let bpmDetermined = true;
+
     async function playMusic() {
+        bpmDetermined = false;
         const audioContext = new AudioContext();
 
         const realtimeAnalyzerNode =
@@ -27,6 +30,7 @@
             if (event.data.message === "BPM_STABLE") {
                 console.log("BPM_STABLE", event.data.data.bpm[0].tempo);
                 bpm.set(event.data.data.bpm[0].tempo);
+                bpmDetermined = true;
             }
         };
     }
@@ -36,16 +40,20 @@
     class="{show ? '' : 'opacity-0 pointer-events-none'} fixed left-0 top-0 flex h-full w-full items-center justify-center transition duration-500 ease-out">
     <div
         class="relative m-12 flex max-h-full max-w-3xl flex-col items-center justify-center rounded-md border border-gray-600/50 bg-gray-400 bg-opacity-10 bg-clip-padding p-8 text-white backdrop-blur-md backdrop-filter">
-        <h1 class="text-center text-xl font-medium">Custom Music Player</h1>
+        <h1 class="text-center text-xl font-medium">
+            Custom Music Player (WIP)
+        </h1>
+        
         <audio
             crossorigin="anonymous"
-            src="music.mp3"
+            src="music.wav"
             id="track"
             volume="0.1"></audio>
         <button
             on:click="{playMusic}"
             class="rounded-md bg-gray-400 bg-opacity-20 bg-clip-padding px-4 py-2 text-white backdrop-blur-sm backdrop-filter">
-            hi
+            Analyse BPM
         </button>
+        <p class="{bpmDetermined ? 'hidden' : "animate-pulse"}">blahaj is listening! give them a moment c:</p>
     </div>
 </div>

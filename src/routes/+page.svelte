@@ -15,11 +15,10 @@
         bpm_value = value;
     });
 
-    $: (() => {
-        console.log(bpm_value + " BPM");
-    })();
     let loading = true;
     let loadpercent = 10;
+
+    let showCustomMusicPlayer = false;
 
     onMount(() => {
         // three
@@ -99,6 +98,10 @@
             renderer.setSize(window.innerWidth, window.innerHeight);
         });
 
+        bpm.subscribe((value) => {
+            controls.autoRotateSpeed = (value / 33) * 10;
+        });
+
         const analyticsScript = document.createElement("script");
         analyticsScript.defer = true;
         analyticsScript.dataset.domain = "blahaj.ca";
@@ -128,18 +131,18 @@
 
 <LoadingModal {loading} {loadpercent} />
 
-<MusicPlayerModal show="true" bpm />
+<MusicPlayerModal show="{showCustomMusicPlayer}" />
 
 <div class="fixed bottom-0 right-0 m-4">
     <button
         on:click="{playMusic}"
-        class="rounded-md bg-gray-400 bg-opacity-20 bg-clip-padding px-4 py-2 text-white backdrop-blur-sm backdrop-filter">
-        {pausemusic ? "Play" : "Pause"} Music
-    </button>
+        class="m-2 rounded-md bg-gray-400 bg-opacity-20 bg-clip-padding px-4 py-2 text-white backdrop-blur-sm backdrop-filter">
+        {pausemusic ? "Play" : "Pause"} Music</button
+    ><br />
     <button
-        on:click="{playMusic}"
-        class="rounded-md bg-gray-400 bg-opacity-20 bg-clip-padding px-4 py-2 text-white backdrop-blur-sm backdrop-filter">
-        Custom
+        on:click="{() => (showCustomMusicPlayer = !showCustomMusicPlayer)}"
+        class="m-2 rounded-md bg-gray-400 bg-opacity-20 bg-clip-padding px-4 py-2 text-white backdrop-blur-sm backdrop-filter">
+        Custom Song
     </button>
 </div>
 
