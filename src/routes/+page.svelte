@@ -3,6 +3,7 @@
     import * as THREE from "three";
     import { GLTFLoader } from "three/addons/loaders/GLTFLoader.js";
     import { OrbitControls } from "three/addons/controls/OrbitControls.js";
+    import WebGL from "three/addons/capabilities/WebGL.js";
     import { onMount } from "svelte";
     import "@fontsource-variable/nunito";
     import LoadingModal from "../components/LoadingModal.svelte";
@@ -15,7 +16,14 @@
         // three
         const container = document.getElementById("canvasFrame");
 
-        const renderer = new THREE.WebGLRenderer();
+        if (!WebGL.isWebGLAvailable())
+            return alert(
+                "Your browser does not appear to support WebGL. Learn more at https://get.webgl.org.",
+            );
+        const renderer = new THREE.WebGLRenderer({
+            antialias: true,
+        });
+
         renderer.setSize(window.innerWidth, window.innerHeight);
         container.appendChild(renderer.domElement);
 
