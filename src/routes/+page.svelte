@@ -139,18 +139,33 @@
 
 <LoadingModal {loading} {loadpercent} />
 
-<MusicPlayerModal show="{showCustomMusicPlayer}" />
+<MusicPlayerModal bind:show={showCustomMusicPlayer} />
 
 <div class="fixed bottom-0 right-0 m-4">
     <button
-        on:click="{playMusic}"
-        class="m-2 rounded-md bg-gray-400 bg-opacity-20 bg-clip-padding px-4 py-2 text-white backdrop-blur-sm backdrop-filter">
-        {pausemusic ? "Play" : "Pause"} Music</button
-    ><br />
+        on:click={playMusic}
+        class=" rounded-md bg-gray-400 bg-opacity-20 bg-clip-padding px-4 py-2 text-white backdrop-blur-sm backdrop-filter">
+        {pausemusic ? "Play" : "Pause"} Music</button>
     <button
-        on:click="{() => (showCustomMusicPlayer = !showCustomMusicPlayer)}"
-        class="m-2 rounded-md bg-gray-400 bg-opacity-20 bg-clip-padding px-4 py-2 text-white backdrop-blur-sm backdrop-filter">
-        Custom Song
+        on:click={() => (showCustomMusicPlayer = !showCustomMusicPlayer)}
+        class="rounded-md bottom-0 bg-gray-400 bg-opacity-20 bg-clip-padding p-2 text-white backdrop-blur-sm backdrop-filter">
+        <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="icon icon-tabler icon-tabler-music"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+            stroke="#ffffff"
+            fill="none"
+            stroke-linecap="round"
+            stroke-linejoin="round">
+            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+            <path d="M3 17a3 3 0 1 0 6 0a3 3 0 0 0 -6 0" />
+            <path d="M13 17a3 3 0 1 0 6 0a3 3 0 0 0 -6 0" />
+            <path d="M9 17v-13h10v13" />
+            <path d="M9 8h10" />
+        </svg>
     </button>
 </div>
 
@@ -158,25 +173,19 @@
     <p>
         Built by
         <a href="https://arti.gay" target="_blank" class="text-blue-300"
-            >ArtificialVR</a
-        >
+            >ArtificialVR</a>
         <br />Inspired by
         <a
             href="https://www.magishira.dev/blahaj"
             target="_blank"
-            class="text-blue-300"
-            >Shira</a
-        >
+            class="text-blue-300">Shira</a>
     </p>
 </div>
 
 <div id="canvasFrame" class="-z-40"></div>
 
-<audio
-    src="discordholdmusic.mp3"
-    loop
-    bind:paused="{pausemusic}"
-    bind:volume></audio>
+<audio src="discordholdmusic.mp3" loop bind:paused={pausemusic} bind:volume
+></audio>
 
 <style>
     :global(body) {

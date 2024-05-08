@@ -1,37 +1,28 @@
 <script>
-    import * as realtimeBpm from "realtime-bpm-analyzer";
-    import { bpm } from "$lib/stores";
+    import * as realtimeBpm from 'realtime-bpm-analyzer';
+    import { bpm } from '$lib/stores';
 
     export let show;
 
     let bpmDetermined = true;
+    let pausemusic = true;
+    let trackloaded = false;
 
-    let downloadurl = "";
+    async function handleFileUpload(event) {
+        const file = event.target.files[0];
+        const url = URL.createObjectURL(file);
+        const track = document.getElementById('track');
+        track.src = url;
+    }
 
-    async function playMusic() {
-        // Set the source with the HTML Audio Node
-        const track = document.getElementById("track");
-
-        const response = await fetch("https://co.wuk.sh/api/json", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-                "Accept": "application/json",
-            },
-            body: JSON.stringify({
-                url: downloadurl,
-                isAudioOnly: true,
-            }),
-        });
-        const data = await response.json();
-        console.log(data);
-        track.src = data.url;
+    async function loadMusic() {
+        const track = document.getElementById('track');
         bpmDetermined = false;
+        trackloaded = true;
         const audioContext = new AudioContext();
 
-        const realtimeAnalyzerNode =
-            await realtimeBpm.createRealTimeBpmProcessor(audioContext);
-        track.play();
+        const realtimeAnalyzerNode = await realtimeBpm.createRealTimeBpmProcessor(audioContext);
+        pausemusic = false;
         const source = audioContext.createMediaElementSource(track);
         const lowpass = realtimeBpm.getBiquadFilter(audioContext);
 
@@ -40,8 +31,8 @@
         source.connect(audioContext.destination);
 
         realtimeAnalyzerNode.port.onmessage = (event) => {
-            if (event.data.message === "BPM_STABLE") {
-                console.log("BPM_STABLE", event.data.data.bpm[0].tempo);
+            if (event.data.message === 'BPM_STABLE') {
+                console.log('BPM_STABLE', event.data.data.bpm[0].tempo);
                 bpm.set(event.data.data.bpm[0].tempo);
                 bpmDetermined = true;
             }
@@ -50,23 +41,57 @@
 </script>
 
 <div
-    class="{show ? '' : 'opacity-0 pointer-events-none'} fixed left-0 top-0 flex h-full w-full items-center justify-center transition duration-500 ease-out">
+    class="{show
+        ? ''
+        : 'opacity-0 pointer-events-none'} fixed left-0 top-0 flex h-full w-full items-center justify-center transition duration-200 ease-in-out">
     <div
         class="relative m-12 flex max-h-full max-w-3xl flex-col items-center justify-center rounded-md border border-gray-600/50 bg-gray-400 bg-opacity-10 bg-clip-padding p-8 text-white backdrop-blur-md backdrop-filter">
-        <h1 class="text-center text-2xl font-medium pb-2">
-            Music Player
-        </h1>
-        
-        <audio
-            crossorigin="anonymous"
-            id="track"></audio>
+        <button on:click={() => (show = false)}
+            ><svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="absolute right-0 top-0 m-4 h-6 w-6 cursor-pointer"
+                width="44"
+                height="44"
+                viewBox="0 0 24 24"
+                stroke-width="1.5"
+                stroke="#ffffff"
+                fill="none"
+                stroke-linecap="round"
+                stroke-linejoin="round">
+                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                <path d="M18 6l-12 12" />
+                <path d="M6 6l12 12" />
+            </svg></button>
+        <h1 class="text-center text-2xl font-medium">Custom Music</h1>
+        <h1 class="pb-2 text-center text-sm font-medium">(experimental)</h1>
 
-        <input placeholder="Youtube, Soundcloud" type="text" bind:value={downloadurl} class="rounded-md border border-gray-600/50 bg-gray-400 bg-opacity-10 bg-clip-padding p-2 text-white backdrop-blur-md backdrop-filter text-center">
-        <button
-            on:click="{playMusic}"
-            class="rounded-md mt-2 bg-gray-400 bg-opacity-20 bg-clip-padding px-4 py-2 text-white backdrop-blur-sm backdrop-filter">
-            Play
-        </button>
-        <p class="pt-2 {bpmDetermined ? 'hidden' : "animate-pulse"}">blahaj is listening! give them a moment c:</p>
+        <audio crossorigin="anonymous" id="track" bind:paused={pausemusic} loop />
+
+        <input
+            type="file"
+            id="audioFile"
+            accept="audio/*"
+            on:change={handleFileUpload}
+            class="rounded-md border border-gray-600/50 bg-gray-400 bg-opacity-10 bg-clip-padding p-2 text-center text-white backdrop-blur-md backdrop-filter" />
+
+        <div class="flex space-x-2">
+            <button
+                on:click={loadMusic}
+                class="{trackloaded
+                    ? 'hidden'
+                    : ''} mt-2 rounded-md bg-gray-400 bg-opacity-20 bg-clip-padding px-4 py-2 text-white backdrop-blur-sm backdrop-filter">
+                Load
+            </button>
+            <div class={trackloaded ? '' : 'hidden'}>
+                <button
+                    on:click={() => {
+                        pausemusic = !pausemusic;
+                    }}
+                    class="mt-2 rounded-md bg-gray-400 bg-opacity-20 bg-clip-padding p-2 text-white backdrop-blur-sm backdrop-filter">
+                    {pausemusic ? 'Play' : 'Pause'} Music
+                </button>
+            </div>
+        </div>
+        <p class="{bpmDetermined ? 'hidden' : 'animate-pulse'} pt-2">blahaj is listening! give them a moment c:</p>
     </div>
 </div>
