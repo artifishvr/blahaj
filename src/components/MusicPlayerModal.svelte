@@ -63,7 +63,7 @@
                 <path d="M6 6l12 12" />
             </svg></button>
         <h1 class="text-center text-2xl font-medium">Custom Music</h1>
-        <h1 class="pb-2 text-center text-sm font-medium">(experimental)</h1>
+        <h1 class="pb-2 text-center text-sm font-medium">(experimental, work in progress)</h1>
 
         <audio crossorigin="anonymous" id="track" bind:paused={pausemusic} loop />
 
