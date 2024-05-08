@@ -6,8 +6,18 @@
     import { onMount } from "svelte";
     import "@fontsource-variable/nunito";
     import LoadingModal from "../components/LoadingModal.svelte";
+    import MusicPlayerModal from "../components/MusicPlayerModal.svelte";
+    import { bpm } from "$lib/stores";
 
-    let bpm = 20;
+    let bpm_value;
+
+    bpm.subscribe((value) => {
+        bpm_value = value;
+    });
+
+    $: (() => {
+        console.log(bpm_value + " BPM");
+    })();
     let loading = true;
     let loadpercent = 10;
 
@@ -67,7 +77,7 @@
         const controls = new OrbitControls(camera, renderer.domElement);
 
         controls.autoRotate = true;
-        controls.autoRotateSpeed = (bpm / 33) * 10;
+        controls.autoRotateSpeed = (bpm_value / 33) * 10;
         controls.enableDamping = true;
         controls.enablePan = false;
         controls.enableZoom = true;
@@ -118,11 +128,18 @@
 
 <LoadingModal {loading} {loadpercent} />
 
+<MusicPlayerModal show="true" bpm />
+
 <div class="fixed bottom-0 right-0 m-4">
     <button
         on:click="{playMusic}"
         class="rounded-md bg-gray-400 bg-opacity-20 bg-clip-padding px-4 py-2 text-white backdrop-blur-sm backdrop-filter">
         {pausemusic ? "Play" : "Pause"} Music
+    </button>
+    <button
+        on:click="{playMusic}"
+        class="rounded-md bg-gray-400 bg-opacity-20 bg-clip-padding px-4 py-2 text-white backdrop-blur-sm backdrop-filter">
+        Custom
     </button>
 </div>
 
