@@ -1,8 +1,0 @@
-{
-    "tabWidth": 4,
-    "useTabs": false,
-    "plugins": ["prettier-plugin-tailwindcss", "prettier-plugin-svelte"],
-    "overrides": [{ "files": "*.svelte", "options": { "parser": "html" } }],
-    "bracketSameLine": true,
-    "endOfLine": "lf"
-}

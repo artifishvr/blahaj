@@ -24,6 +24,7 @@
     "type": "module",
     "dependencies": {
         "@fontsource-variable/nunito": "^5.0.19",
+        "realtime-bpm-analyzer": "^4.0.2",
         "three": "^0.162.0"
     }
 }
