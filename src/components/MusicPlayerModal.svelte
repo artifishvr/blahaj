@@ -14,6 +14,7 @@
         const url = URL.createObjectURL(file);
         const track = document.getElementById('track');
         track.src = url;
+        pausemusic = true;
     }
 
     async function loadMusic() {
