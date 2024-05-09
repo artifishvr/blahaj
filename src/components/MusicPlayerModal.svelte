@@ -1,6 +1,7 @@
 <script>
     import * as realtimeBpm from 'realtime-bpm-analyzer';
     import { bpm } from '$lib/stores';
+    import AudioMotionAnalyzer from 'audiomotion-analyzer';
 
     export let show;
 
@@ -18,7 +19,6 @@
     async function loadMusic() {
         const track = document.getElementById('track');
         if (!track.src) return;
-
         bpmDetermined = false;
         trackloaded = true;
         const audioContext = new AudioContext();
@@ -39,6 +39,15 @@
                 bpmDetermined = true;
             }
         };
+
+        new AudioMotionAnalyzer(document.getElementById('container'), {
+            source: track,
+            overlay: true,
+            showBgColor: false,
+            alphaBars: true,
+            gradient: 'steelblue',
+            showScaleX: false,
+        });
     }
 </script>
 
@@ -97,3 +106,5 @@
         <p class="{bpmDetermined ? 'hidden' : 'animate-pulse'} pt-2">blahaj is listening! give them a moment c:</p>
     </div>
 </div>
+
+<div id="container" class="fixed inset-x-0 bottom-0"></div>

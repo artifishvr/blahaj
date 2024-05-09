@@ -8,6 +8,9 @@ dependencies:
   '@fontsource-variable/nunito':
     specifier: ^5.0.19
     version: 5.0.19
+  audiomotion-analyzer:
+    specifier: ^4.4.0
+    version: 4.4.0
   realtime-bpm-analyzer:
     specifier: ^4.0.2
     version: 4.0.2
@@ -585,6 +588,10 @@ packages:
     dependencies:
       dequal: 2.0.3
     dev: true
+
+  /audiomotion-analyzer@4.4.0:
+    resolution: {integrity: sha512-vba/mHQPF31NkLD+5K/0yRcmd33aaBqKx0T48dav/vc+2AQAizHCMFLxROTsVE27HsGdacwC9H1DsV3YazeKwA==}
+    dev: false
 
   /autoprefixer@10.4.18(postcss@8.4.35):
     resolution: {integrity: sha512-1DKbDfsr6KUElM6wg+0zRNkB/Q7WcKYAaK+pzXn+Xqmszm/5Xa9coeNdtP88Vi+dPzZnMjhge8GIV49ZQkDa+g==}
