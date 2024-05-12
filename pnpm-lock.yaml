@@ -30,9 +30,9 @@ importers:
         specifier: ^4.11.5
         version: 4.11.5
     devDependencies:
-      '@sveltejs/adapter-static':
-        specifier: ^3.0.1
-        version: 3.0.1(@sveltejs/kit@2.5.3(@sveltejs/vite-plugin-svelte@3.0.2(svelte@4.2.12)(vite@5.1.7))(svelte@4.2.12)(vite@5.1.7))
+      '@sveltejs/adapter-auto':
+        specifier: ^3.2.0
+        version: 3.2.0(@sveltejs/kit@2.5.3(@sveltejs/vite-plugin-svelte@3.0.2(svelte@4.2.12)(vite@5.1.7))(svelte@4.2.12)(vite@5.1.7))
       '@sveltejs/kit':
         specifier: ^2.0.0
         version: 2.5.3(@sveltejs/vite-plugin-svelte@3.0.2(svelte@4.2.12)(vite@5.1.7))(svelte@4.2.12)(vite@5.1.7)
@@ -324,8 +324,8 @@ packages:
     cpu: [x64]
     os: [win32]
 
-  '@sveltejs/adapter-static@3.0.1':
-    resolution: {integrity: sha512-6lMvf7xYEJ+oGeR5L8DFJJrowkefTK6ZgA4JiMqoClMkKq0s6yvsd3FZfCFvX1fQ0tpCD7fkuRVHsnUVgsHyNg==}
+  '@sveltejs/adapter-auto@3.2.0':
+    resolution: {integrity: sha512-She5nKT47kwHE18v9NMe6pbJcvULr82u0V3yZ0ej3n1laWKGgkgdEABE9/ak5iDPs93LqsBkuIo51kkwCLBjJA==}
     peerDependencies:
       '@sveltejs/kit': ^2.0.0
 
@@ -1205,9 +1205,10 @@ snapshots:
   '@rollup/rollup-win32-x64-msvc@4.12.1':
     optional: true
 
-  '@sveltejs/adapter-static@3.0.1(@sveltejs/kit@2.5.3(@sveltejs/vite-plugin-svelte@3.0.2(svelte@4.2.12)(vite@5.1.7))(svelte@4.2.12)(vite@5.1.7))':
+  '@sveltejs/adapter-auto@3.2.0(@sveltejs/kit@2.5.3(@sveltejs/vite-plugin-svelte@3.0.2(svelte@4.2.12)(vite@5.1.7))(svelte@4.2.12)(vite@5.1.7))':
     dependencies:
       '@sveltejs/kit': 2.5.3(@sveltejs/vite-plugin-svelte@3.0.2(svelte@4.2.12)(vite@5.1.7))(svelte@4.2.12)(vite@5.1.7)
+      import-meta-resolve: 4.0.0
 
   '@sveltejs/kit@2.5.3(@sveltejs/vite-plugin-svelte@3.0.2(svelte@4.2.12)(vite@5.1.7))(svelte@4.2.12)(vite@5.1.7)':
     dependencies:
