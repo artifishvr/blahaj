@@ -3,7 +3,7 @@ import { ReadableStream } from 'web-streams-polyfill';
 
 export async function GET({ params }) {
     const info = await ytdl.getInfo(params.link);
-    const format = ytdl.chooseFormat(info.formats, { quality: 'highestaudio' });
+    const format = ytdl.chooseFormat(info.formats, { quality: 'lowestaudio' });
     if (!format) {
         return Response('No suitable format found');
     }
@@ -17,10 +17,5 @@ export async function GET({ params }) {
         }
     });
 
-    return new Response(readableStream, {
-        headers: {
-            'Content-Type': 'audio/mpeg',
-            'Content-Disposition': 'attachment; filename="audio.mp3"'
-        }
-    });
+    return new Response(readableStream);
 };
