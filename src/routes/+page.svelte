@@ -135,7 +135,7 @@
 </script>
 
 <svelte:head>
-    <title>blahaj go spinny</title>
+    <title>blåhaj go spinny</title>
 </svelte:head>
 
 <LoadingModal {loading} {loadpercent} />
