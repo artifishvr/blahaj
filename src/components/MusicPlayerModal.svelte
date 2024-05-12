@@ -7,15 +7,15 @@
 
     let bpmDetermined = true;
     let pausemusic = true;
-    let trackloaded = false;
     let ytURL = '';
     let volume = 100;
+    let lastBpm = 20;
 
     async function loadMusic() {
         const track = document.getElementById('track');
         track.src = `/stream/${encodeURIComponent(ytURL)}`;
         bpmDetermined = false;
-        trackloaded = true;
+        ytURL = '';
         const audioContext = new AudioContext();
 
         const realtimeAnalyzerNode = await realtimeBpm.createRealTimeBpmProcessor(audioContext);
@@ -29,8 +29,9 @@
 
         realtimeAnalyzerNode.port.onmessage = (event) => {
             if (event.data.message === 'BPM_STABLE') {
-                console.log('BPM_STABLE', event.data.data.bpm[0].tempo);
+                console.log('blåhaj thinks the bpm is ', event.data.data.bpm[0].tempo);
                 bpm.set(event.data.data.bpm[0].tempo);
+                lastBpm = event.data.data.bpm[0].tempo;
                 bpmDetermined = true;
             }
         };
@@ -43,6 +44,12 @@
             gradient: 'steelblue',
             showScaleX: false,
         });
+    }
+
+    $: if (pausemusic) {
+        bpm.set(20);
+    } else {
+        bpm.set(lastBpm);
     }
 </script>
 
@@ -91,20 +98,17 @@
         <div class="flex space-x-2">
             <button
                 on:click={loadMusic}
-                class="{trackloaded
-                    ? 'hidden'
-                    : ''} mt-2 rounded-md bg-gray-400 bg-opacity-20 bg-clip-padding px-4 py-2 text-white backdrop-blur-sm backdrop-filter">
+                class="mt-2 rounded-md bg-gray-400 bg-opacity-20 bg-clip-padding px-4 py-2 text-white backdrop-blur-sm backdrop-filter">
                 Load
             </button>
-            <div class={trackloaded ? '' : 'hidden'}>
-                <button
-                    on:click={() => {
-                        pausemusic = !pausemusic;
-                    }}
-                    class="mt-2 rounded-md bg-gray-400 bg-opacity-20 bg-clip-padding p-2 text-white backdrop-blur-sm backdrop-filter">
-                    {pausemusic ? 'Play' : 'Pause'} Music
-                </button>
-            </div>
+
+            <button
+                on:click={() => {
+                    pausemusic = !pausemusic;
+                }}
+                class="mt-2 rounded-md bg-gray-400 bg-opacity-20 bg-clip-padding p-2 text-white backdrop-blur-sm backdrop-filter">
+                {pausemusic ? 'Play' : 'Pause'} Music
+            </button>
         </div>
         <p class="{bpmDetermined ? 'hidden' : 'animate-pulse'} pt-2">blahaj is listening! give them a moment c:</p>
     </div>
