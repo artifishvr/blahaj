@@ -42,7 +42,6 @@
 
         const manager = new THREE.LoadingManager();
         manager.onStart = function (url) {
-            console.log('Started loading file: ' + url);
             loading = true;
         };
 
@@ -51,7 +50,6 @@
         };
 
         manager.onLoad = function () {
-            console.log('Loading complete!');
             setTimeout(() => {
                 loading = false;
             }, 700);
@@ -112,6 +110,8 @@
         plausibleExtra.innerHTML =
             'window.plausible = window.plausible || function() { (window.plausible.q = window.plausible.q || []).push(arguments) }';
         document.head.appendChild(plausibleExtra);
+
+        console.log('hi! this website is open source! feel free to come contribute c:\nhttps://github.com/artifishvr/blahaj');
     });
 
     let firstplay = true;

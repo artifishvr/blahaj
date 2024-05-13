@@ -10,6 +10,7 @@
     let ytURL = '';
     let volume = 100;
     let lastBpm = 20;
+    let firstplay = true;
 
     async function loadMusic() {
         const track = document.getElementById('track');
@@ -20,6 +21,7 @@
 
         const realtimeAnalyzerNode = await realtimeBpm.createRealTimeBpmProcessor(audioContext);
         pausemusic = false;
+        track.play();
         const source = audioContext.createMediaElementSource(track);
         const lowpass = realtimeBpm.getBiquadFilter(audioContext);
 
@@ -36,14 +38,18 @@
             }
         };
 
-        new AudioMotionAnalyzer(document.getElementById('container'), {
-            source: track,
-            overlay: true,
-            showBgColor: false,
-            alphaBars: true,
-            gradient: 'steelblue',
-            showScaleX: false,
-        });
+        if (firstplay) {
+            firstplay = false;
+            plausible('PlayCustomMusic');
+            new AudioMotionAnalyzer(document.getElementById('audiovisualizer'), {
+                source: track,
+                overlay: true,
+                showBgColor: false,
+                alphaBars: true,
+                gradient: 'steelblue',
+                showScaleX: false,
+            });
+        }
     }
 
     $: if (pausemusic) {
@@ -114,4 +120,4 @@
     </div>
 </div>
 
-<div id="container" class="fixed w-screen min-h-32 inset-x-0 bottom-0"></div>
+<div id="audiovisualizer" class="fixed w-screen min-h-32 inset-x-0 bottom-0"></div>
