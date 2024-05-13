@@ -114,4 +114,4 @@
     </div>
 </div>
 
-<div id="container" class="fixed inset-x-0 bottom-0"></div>
+<div id="container" class="fixed w-screen min-h-32 inset-x-0 bottom-0"></div>
