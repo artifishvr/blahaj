@@ -14,6 +14,10 @@
 
     async function loadMusic() {
         const track = document.getElementById('track');
+        const response = await fetch(`/stream/${encodeURIComponent(ytURL)}`);
+        const blob = await response.blob();
+        const url = URL.createObjectURL(blob);
+        track.src = url;
         track.src = `/stream/${encodeURIComponent(ytURL)}`;
         bpmDetermined = false;
         ytURL = '';
