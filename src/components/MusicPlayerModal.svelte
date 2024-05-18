@@ -2,6 +2,9 @@
     import * as realtimeBpm from 'realtime-bpm-analyzer';
     import { bpm } from '$lib/stores';
     import AudioMotionAnalyzer from 'audiomotion-analyzer';
+    import { page } from '$app/stores';
+    import { onMount } from 'svelte';
+    const autoplayurl = $page.url.searchParams.get('play');
 
     export let show;
 
@@ -12,6 +15,15 @@
     let lastBpm = 20;
     let firstplay = true;
     let loading;
+    let attentiongrab = false;
+
+    onMount(() => {
+        if (autoplayurl) {
+            ytURL = autoplayurl;
+            show = true;
+            attentiongrab = true;
+        }
+    });
 
     async function loadMusic() {
         const track = document.getElementById('track');
@@ -121,7 +133,9 @@
         <div class="flex space-x-2">
             <button
                 on:click={loadMusic}
-                class="mt-2 rounded-md bg-gray-400 bg-opacity-20 bg-clip-padding px-4 py-2 text-white backdrop-blur-sm backdrop-filter">
+                class="{attentiongrab
+                    ? 'animate-bounce'
+                    : ''}  mt-2 rounded-md bg-gray-400 bg-opacity-20 bg-clip-padding px-4 py-2 text-white backdrop-blur-sm backdrop-filter">
                 Load
             </button>
 
