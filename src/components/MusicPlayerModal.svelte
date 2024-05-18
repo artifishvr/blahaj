@@ -2,9 +2,7 @@
     import * as realtimeBpm from 'realtime-bpm-analyzer';
     import { bpm } from '$lib/stores';
     import AudioMotionAnalyzer from 'audiomotion-analyzer';
-    import { page } from '$app/stores';
     import { onMount } from 'svelte';
-    const autoplayurl = $page.url.searchParams.get('play');
 
     export let show;
 
@@ -18,6 +16,8 @@
     let attentiongrab = false;
 
     onMount(() => {
+        const urlParams = new URLSearchParams(window.location.search);
+        const autoplayurl = urlParams.get('play');
         if (autoplayurl) {
             ytURL = autoplayurl;
             show = true;
