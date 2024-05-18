@@ -11,15 +11,27 @@
     let volume = 100;
     let lastBpm = 20;
     let firstplay = true;
+    let loading;
 
     async function loadMusic() {
         const track = document.getElementById('track');
-        const response = await fetch(`/stream/${encodeURIComponent(ytURL)}`);
-        const blob = await response.blob();
-        const url = URL.createObjectURL(blob);
-        track.src = url;
-        track.src = `/stream/${encodeURIComponent(ytURL)}`;
+        loading = true;
+        const cobaltresponse = await fetch('https://co.wuk.sh/api/json', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                Accept: 'application/json',
+            },
+            body: JSON.stringify({
+                url: ytURL,
+                isAudioOnly: true,
+            }),
+        });
+        const data = await cobaltresponse.json();
+        const music = await fetch(data.url);
+        track.src = URL.createObjectURL(await music.blob());
         bpmDetermined = false;
+        loading = false;
         ytURL = '';
         const audioContext = new AudioContext();
 
@@ -91,11 +103,12 @@
         <audio id="track" bind:paused={pausemusic} loop />
 
         <input
-            placeholder="Youtube Link"
+            placeholder="Youtube, Soundcloud, etc."
             type="text"
             bind:value={ytURL}
             class="w-64 rounded-md border border-gray-600/50 bg-gray-400 bg-opacity-10 bg-clip-padding p-2 text-white backdrop-blur-md backdrop-filter text-center" />
-
+        <a href="https://github.com/imputnet/cobalt?tab=readme-ov-file#supported-services" target="_blank"
+            ><p class="text-sm text-sky-300">list of supported sources</p></a>
         <div
             class="w-64 mt-2 rounded-md border border-gray-600/50 bg-gray-400 bg-opacity-10 bg-clip-padding p-2 text-white backdrop-blur-md backdrop-filter text-center">
             <p>Volume</p>
@@ -121,6 +134,7 @@
             </button>
         </div>
         <p class="{bpmDetermined ? 'hidden' : 'animate-pulse'} pt-2">blahaj is listening! give them a moment c:</p>
+        <p class="{loading ? 'animate-pulse' : 'hidden'} pt-2">loading...</p>
     </div>
 </div>
 
