@@ -29,7 +29,7 @@
         const track = document.getElementById('track');
         attentiongrab = false;
         loading = true;
-        const cobaltresponse = await fetch('https://co.wuk.sh/api/json', {
+        const cobaltresponse = await fetch('https://api.cobalt.tools/api/json', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
