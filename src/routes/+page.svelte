@@ -10,9 +10,6 @@
     import MusicPlayerModal from '../components/MusicPlayerModal.svelte';
     import { bpm } from '$lib/stores';
     import screenfull from 'screenfull';
-    import { page } from '$app/stores';
-
-    const pinkmode = $page.url.searchParams.has('pink');
 
     let bpm_value;
 
@@ -26,6 +23,8 @@
     let showCustomMusicPlayer = false;
 
     onMount(() => {
+        const urlParams = new URLSearchParams(window.location.search);
+        const pinkMode = urlParams.has('pink');
         // three
         const container = document.getElementById('canvasFrame');
 
@@ -61,7 +60,7 @@
         const loader = new GLTFLoader(manager);
 
         loader.load(
-            pinkmode ? 'blahaj_pink.glb' : 'blahaj.glb',
+            pinkMode ? 'blahaj_pink.glb' : 'blahaj.glb',
             function (gltf) {
                 scene.add(gltf.scene);
             },
