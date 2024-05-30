@@ -28,5 +28,15 @@ export const quotes = [
     "i hardly know er!",
     "you are valid",
     "i think i may be transgender",
-    "Cargo space? No, car go road"
+    "Cargo space? No, car go road",
+    "blahaj, Doo Doo Doo Doo Doo Doo",
+    "i hope you smile today",
+    "seas the day with a smile",
+    "keep calm and swim on!",
+    "hug a blåhaj, now! i am not asking.",
+    "this shark is cute, but not as cute as you!",
+    "make a wish upon this shark",
+    "you can do it! make your dreams come true!",
+    "you're a wonderful person",
+    "get snuggled!",
 ]
