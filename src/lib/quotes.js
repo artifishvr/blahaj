@@ -25,5 +25,8 @@ export const quotes = [
     "hostage or not sometimes it's nice being held :3",
     "they don't know im a puppy",
     "good girl",
-    "i hardly know er!"
+    "i hardly know er!",
+    "you are valid",
+    "i think i may be transgender",
+    "Cargo space? No, car go road"
 ]

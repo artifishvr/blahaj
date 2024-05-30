@@ -16,8 +16,7 @@
         <div class="mb-4 h-24 w-24 animate-spin ease-linear">
             <img src="/favicon.png" alt="logo" class="w-full h-full" />
         </div>
-        <p class="text-center text-md font-semibold pt-2">Did you know</p>
-        <p class="text-center text-sm font-medium">{randomQuote}</p>
+        <p class="text-center text-md font-semibold pt-2 pb-1">"{randomQuote}"</p>
 
         <div class="mt-4 h-2.5 w-full rounded-full bg-gray-200 dark:bg-gray-700">
             <div class="h-2.5 rounded-full bg-blue-500" style="width: {loadpercent}%"></div>
