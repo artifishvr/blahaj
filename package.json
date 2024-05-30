@@ -1,6 +1,6 @@
 {
     "name": "blahaj",
-    "version": "1.4.7",
+    "version": "1.5.1",
     "private": true,
     "scripts": {
         "dev": "vite dev",

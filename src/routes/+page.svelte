@@ -18,7 +18,7 @@
     });
 
     let loading = true;
-    let loadpercent = 10;
+    let loadpercent = 0;
 
     let showCustomMusicPlayer = false;
 
@@ -41,18 +41,14 @@
         camera.position.x = 0.45;
 
         const manager = new THREE.LoadingManager();
-        manager.onStart = function (url) {
+        manager.onStart = function () {
             loading = true;
-        };
-
-        manager.onProgress = function (url, itemsLoaded, itemsTotal) {
-            loadpercent = (itemsLoaded / itemsTotal) * 100;
         };
 
         manager.onLoad = function () {
             setTimeout(() => {
                 loading = false;
-            }, 700);
+            }, 600);
         };
 
         manager.onError = function (url) {
@@ -66,7 +62,9 @@
             function (gltf) {
                 scene.add(gltf.scene);
             },
-            undefined,
+            function (xhr) {
+                loadpercent = (xhr.loaded / xhr.total) * 100;
+            },
             function (error) {
                 console.error(error);
             },
