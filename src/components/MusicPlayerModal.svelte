@@ -111,7 +111,10 @@
                 <path d="M6 6l12 12" />
             </svg></button>
         <h1 class="text-center text-2xl font-medium">Custom Music</h1>
-        <h1 class="pb-2 text-center text-sm font-medium">(experimental, work in progress)</h1>
+        <h2 class="pb-2 text-center text-sm font-medium">
+            <a href="https://github.com/imputnet/cobalt?tab=readme-ov-file#supported-services" target="_blank" class="text-sky-300"
+                >list of supported sources</a>
+        </h2>
 
         <audio id="track" bind:paused={pausemusic} loop />
 
@@ -120,8 +123,7 @@
             type="text"
             bind:value={ytURL}
             class="w-64 rounded-md border border-gray-600/50 bg-gray-400 bg-opacity-10 bg-clip-padding p-2 text-white backdrop-blur-md backdrop-filter text-center" />
-        <a href="https://github.com/imputnet/cobalt?tab=readme-ov-file#supported-services" target="_blank"
-            ><p class="text-sm text-sky-300">list of supported sources</p></a>
+
         <div
             class="w-64 mt-2 rounded-md border border-gray-600/50 bg-gray-400 bg-opacity-10 bg-clip-padding p-2 text-white backdrop-blur-md backdrop-filter text-center">
             <p>Volume</p>
