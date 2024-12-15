@@ -29,7 +29,7 @@
     const track = document.getElementById("track");
     attentiongrab = false;
     loading = true;
-    const cobaltresponse = await fetch("https://c.blahaj.ca/", {
+    const cobaltresponse = await fetch("https://cobalt-api.ayo.tf/", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
