@@ -29,7 +29,7 @@
     const track = document.getElementById("track");
     attentiongrab = false;
     loading = true;
-    const cobaltresponse = await fetch("https://cobalt-api.ayo.tf/", {
+    const cobaltresponse = await fetch("https://c.blahaj.ca/", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -40,6 +40,11 @@
         downloadMode: "audio",
       }),
     });
+    if (!cobaltresponse.ok) {
+      alert("Could not get the media from your link.");
+      console.log(await cobaltresponse.json());
+      return;
+    }
     const data = await cobaltresponse.json();
     const music = await fetch(data.url);
     track.src = URL.createObjectURL(await music.blob());
@@ -113,16 +118,20 @@
       </svg></button>
     <h1 class="text-center text-2xl font-medium">Custom Music</h1>
     <h2 class="pb-2 text-center text-sm font-medium">
-      <a
-        href="https://github.com/imputnet/cobalt?tab=readme-ov-file#supported-services"
+      <a href="https://cobalt.tools/" target="_blank" class="text-sky-300">
+        see cobalt.tools for supported services</a>
+    </h2>
+    <h2 class="pb-2 text-center text-md font-medium text-red-300">
+      youtube support is <a
+        href="https://github.com/imputnet/cobalt/issues/942"
         target="_blank"
-        class="text-sky-300">list of supported sources</a>
+        class="text-sky-300">broken</a> right now, sorry!
     </h2>
 
     <audio id="track" bind:paused={pausemusic} loop />
 
     <input
-      placeholder="Youtube, Soundcloud, etc."
+      placeholder="Twitter, Tiktok, Soundcloud, etc."
       type="text"
       bind:value={ytURL}
       class="w-64 rounded-md border border-gray-600/50 bg-gray-400 bg-opacity-10 bg-clip-padding p-2 text-white backdrop-blur-md backdrop-filter text-center" />
