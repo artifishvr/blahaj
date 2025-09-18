@@ -75,7 +75,7 @@
     const controls = new OrbitControls(camera, renderer.domElement);
 
     controls.autoRotate = true;
-    controls.autoRotateSpeed = (bpm_value / 33) * 10;
+    controls.autoRotateSpeed = (20 / 33) * 10;
     controls.enableDamping = true;
     controls.enablePan = false;
     controls.enableZoom = true;
