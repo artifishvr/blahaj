@@ -1,4 +1,5 @@
 <script>
+  // this file is unused as of 1.6.0
   import * as realtimeBpm from "realtime-bpm-analyzer";
   import { bpm } from "$lib/stores";
   import AudioMotionAnalyzer from "audiomotion-analyzer";
@@ -97,9 +98,11 @@
 <div
   class="{show
     ? ''
-    : 'opacity-0 pointer-events-none'} fixed left-0 top-0 flex h-full w-full items-center justify-center transition duration-200 ease-in-out">
+    : 'opacity-0 pointer-events-none'} fixed left-0 top-0 flex h-full w-full items-center justify-center transition duration-200 ease-in-out"
+>
   <div
-    class="relative m-12 flex max-h-full max-w-3xl flex-col items-center justify-center rounded-md border border-gray-600/50 bg-gray-400 bg-opacity-10 bg-clip-padding p-8 text-white backdrop-blur-md backdrop-filter">
+    class="relative m-12 flex max-h-full max-w-3xl flex-col items-center justify-center rounded-md border border-gray-600/50 bg-gray-400 bg-opacity-10 bg-clip-padding p-8 text-white backdrop-blur-md backdrop-filter"
+  >
     <button on:click={() => (show = false)}
       ><svg
         xmlns="http://www.w3.org/2000/svg"
@@ -111,21 +114,25 @@
         stroke="#ffffff"
         fill="none"
         stroke-linecap="round"
-        stroke-linejoin="round">
+        stroke-linejoin="round"
+      >
         <path stroke="none" d="M0 0h24v24H0z" fill="none" />
         <path d="M18 6l-12 12" />
         <path d="M6 6l12 12" />
-      </svg></button>
+      </svg></button
+    >
     <h1 class="text-center text-2xl font-medium">Custom Music</h1>
     <h2 class="pb-2 text-center text-sm font-medium">
       <a href="https://cobalt.tools/" target="_blank" class="text-sky-300">
-        see cobalt.tools for supported services</a>
+        see cobalt.tools for supported services</a
+      >
     </h2>
     <h2 class="pb-2 text-center text-md font-medium text-red-300">
       youtube support is <a
         href="https://github.com/imputnet/cobalt/issues/942"
         target="_blank"
-        class="text-sky-300">broken</a> right now, sorry!
+        class="text-sky-300">broken</a
+      > right now, sorry!
     </h2>
 
     <audio id="track" bind:paused={pausemusic} loop />
@@ -134,24 +141,28 @@
       placeholder="Twitter, Tiktok, Soundcloud, etc."
       type="text"
       bind:value={ytURL}
-      class="w-64 rounded-md border border-gray-600/50 bg-gray-400 bg-opacity-10 bg-clip-padding p-2 text-white backdrop-blur-md backdrop-filter text-center" />
+      class="w-64 rounded-md border border-gray-600/50 bg-gray-400 bg-opacity-10 bg-clip-padding p-2 text-white backdrop-blur-md backdrop-filter text-center"
+    />
 
     <div
-      class="w-64 mt-2 rounded-md border border-gray-600/50 bg-gray-400 bg-opacity-10 bg-clip-padding p-2 text-white backdrop-blur-md backdrop-filter text-center">
+      class="w-64 mt-2 rounded-md border border-gray-600/50 bg-gray-400 bg-opacity-10 bg-clip-padding p-2 text-white backdrop-blur-md backdrop-filter text-center"
+    >
       <p>Volume</p>
       <input
         id="default-range"
         type="range"
         bind:value={volume}
         on:input={() =>
-          (document.getElementById("track").volume = volume / 100)} />
+          (document.getElementById("track").volume = volume / 100)}
+      />
     </div>
     <div class="flex space-x-2">
       <button
         on:click={loadMusic}
         class="{attentiongrab
           ? 'animate-bounce'
-          : ''}  mt-2 rounded-md bg-gray-400 bg-opacity-20 bg-clip-padding px-4 py-2 text-white backdrop-blur-sm backdrop-filter">
+          : ''}  mt-2 rounded-md bg-gray-400 bg-opacity-20 bg-clip-padding px-4 py-2 text-white backdrop-blur-sm backdrop-filter"
+      >
         Load
       </button>
 
@@ -159,7 +170,8 @@
         on:click={() => {
           pausemusic = !pausemusic;
         }}
-        class="mt-2 rounded-md bg-gray-400 bg-opacity-20 bg-clip-padding p-2 text-white backdrop-blur-sm backdrop-filter">
+        class="mt-2 rounded-md bg-gray-400 bg-opacity-20 bg-clip-padding p-2 text-white backdrop-blur-sm backdrop-filter"
+      >
         {pausemusic ? "Play" : "Pause"} Music
       </button>
     </div>
@@ -170,5 +182,7 @@
   </div>
 </div>
 
-<div id="audiovisualizer" class="fixed w-screen min-h-32 inset-x-0 bottom-0">
-</div>
+<div
+  id="audiovisualizer"
+  class="fixed w-screen min-h-32 inset-x-0 bottom-0"
+></div>

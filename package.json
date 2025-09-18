@@ -1,6 +1,6 @@
 {
   "name": "blahaj",
-  "version": "1.5.2",
+  "version": "1.6.0",
   "private": true,
   "scripts": {
     "dev": "vite dev",
@@ -24,8 +24,6 @@
   "type": "module",
   "dependencies": {
     "@fontsource-variable/nunito": "^5.1.1",
-    "audiomotion-analyzer": "^4.5.0",
-    "realtime-bpm-analyzer": "^4.0.2",
     "screenfull": "^6.0.2",
     "three": "^0.162.0"
   }
