@@ -1,30 +1,43 @@
 {
-  "name": "blahaj",
-  "version": "1.6.0",
-  "private": true,
-  "scripts": {
-    "dev": "vite dev",
-    "build": "vite build",
-    "preview": "vite preview"
-  },
-  "devDependencies": {
-    "@sveltejs/adapter-auto": "^3.3.1",
-    "@sveltejs/kit": "^2.15.2",
-    "@sveltejs/vite-plugin-svelte": "^3.1.2",
-    "autoprefixer": "^10.4.20",
-    "postcss": "^8.4.49",
-    "postcss-load-config": "^5.1.0",
-    "prettier": "^3.4.2",
-    "prettier-plugin-svelte": "^3.3.2",
-    "prettier-plugin-tailwindcss": "^0.5.14",
-    "svelte": "^4.2.19",
-    "tailwindcss": "^3.4.17",
-    "vite": "^5.4.11"
-  },
-  "type": "module",
-  "dependencies": {
-    "@fontsource-variable/nunito": "^5.1.1",
-    "screenfull": "^6.0.2",
-    "three": "^0.162.0"
-  }
+	"name": "blahaj",
+	"private": true,
+	"version": "2.0.0",
+	"type": "module",
+	"scripts": {
+		"dev": "vite dev",
+		"build": "vite build",
+		"preview": "vite preview",
+		"prepare": "svelte-kit sync || echo ''",
+		"check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
+		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
+		"lint": "prettier --check .",
+		"format": "prettier --write ."
+	},
+	"devDependencies": {
+		"@sveltejs/adapter-auto": "^8.0.0",
+		"@sveltejs/kit": "^3.0.0",
+		"@sveltejs/vite-plugin-svelte": "^7.2.0",
+		"@tailwindcss/vite": "^4.3.0",
+		"prettier": "^3.8.3",
+		"prettier-plugin-svelte": "^4.1.0",
+		"prettier-plugin-tailwindcss": "^0.8.0",
+		"svelte": "^5.57.1",
+		"svelte-check": "^4.6.0",
+		"tailwindcss": "^4.3.0",
+		"typescript": "^6.0.3",
+		"vite": "^8.3.0"
+	},
+	"imports": {
+		"#lib": "./src/lib/index.js",
+		"#lib/*": "./src/lib/*",
+		"#components/*": "./src/components/*",
+		"#assets/*": "./src/assets/*"
+	},
+	"dependencies": {
+		"@fontsource-variable/nunito": "^5.3.0",
+		"@lucide/svelte": "^1.62.0",
+		"@threlte/core": "^8.6.1",
+		"@threlte/extras": "^9.22.3",
+		"three": "^0.186.1"
+	}
 }
