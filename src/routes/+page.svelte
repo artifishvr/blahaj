@@ -6,12 +6,14 @@
 	import Music from '#components/Music.svelte';
 	import Loading from '#components/Loading.svelte';
     import Fullscreen from '#components/Fullscreen.svelte';
+    import SpinControls from '#components/SpinControls.svelte';
 
 	const { progress, finishedOnce } = useProgress();
 
 	let showControls = $state(true);
+    let speedMult = $state(1);
 	let controlsTimeout: ReturnType<typeof setTimeout>;
-
+        
 	function controls() {
 		showControls = true;
 
@@ -38,7 +40,7 @@
 
 	<div class="absolute inset-0">
 		<Canvas>
-			<Scene />
+			<Scene {speedMult} />
 		</Canvas>
 	</div>
 
@@ -63,7 +65,10 @@
 			</p>
 		</div>
 
-		<Music />
+        <div class="absolute pointer-events-auto right-0 bottom-0 m-4 flex space-x-2">
+        <SpinControls bind:speedMult />
+		<Music bind:speedMult />
+</div>
 
         <Fullscreen />
 	</div>

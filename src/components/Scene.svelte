@@ -1,6 +1,8 @@
 <script lang="ts">
   import { T } from '@threlte/core'
   import { GLTF, OrbitControls } from '@threlte/extras'
+
+  let { speedMult }: { speedMult: number } = $props()
 </script>
 
 <T.PerspectiveCamera
@@ -10,11 +12,11 @@
 >
   <OrbitControls
     autoRotate
-    autoRotateSpeed={(20 / 33) * 10}
+    autoRotateSpeed={6 * speedMult ** 2}
     enableDamping
-    enableZoom={false}
+    enableZoom={speedMult == 0}
     enablePan={false}
-    enableRotate={false}
+    enableRotate={speedMult == 0}
   />
 </T.PerspectiveCamera>
 
